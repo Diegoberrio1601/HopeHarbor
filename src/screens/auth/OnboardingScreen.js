@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ScrollView
 } from "react-native";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { colorPalette } from "../../styles/colorPalette";
@@ -58,7 +59,7 @@ export const OnboardingScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <ScrollView bounces={false} style={styles.content}>
         <TouchableOpacity onPress={handleSkip} style={styles.skipButton}>
           <Text style={styles.skipButtonText}>Saltar</Text>
         </TouchableOpacity>
@@ -81,7 +82,8 @@ export const OnboardingScreen = ({ navigation }) => {
         <Text style={styles.subtitle}>{pages[currentPage - 1].subtitle}</Text>
 
         <View style={styles.containerButton}>
-          <TouchableOpacity onPress={handleBack} style={styles.containerArrow}>
+         <View style={styles.buttons}>
+         <TouchableOpacity onPress={handleBack} style={styles.containerArrow}>
             <FontAwesome6
               name="arrow-left-long"
               size={16}
@@ -92,8 +94,10 @@ export const OnboardingScreen = ({ navigation }) => {
           <TouchableOpacity onPress={handleNext} style={styles.containerArrow} >
             <FontAwesome6 name="arrow-right-long" size={16} color="#fff" />
           </TouchableOpacity>
+         </View>
         </View>
-      </View>
+
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -102,15 +106,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
     backgroundColor: colorPalette.dark,
   },
   content: {
     flex: 1,
-    alignItems: "center",
+    // alignItems: "center",
     paddingHorizontal: 20,
-    justifyContent: "center",
+    // justifyContent: "center",
   },
   image: {
     width: 362,
@@ -124,11 +128,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 10,
     fontSize: 28,
-    fontFamily: "Poppins_700Bold",
+    fontFamily: "Bold",
   },
   subtitle: {
     color: "#8E9295",
-    fontFamily: "Poppins_300Light",
+    fontFamily: "Light",
     textAlign: "center",
     width: 355,
     fontSize: 16,
@@ -141,12 +145,16 @@ const styles = StyleSheet.create({
   },
   skipButtonText: {
     color: "#D7D7D7",
-    fontFamily: "Poppins_600SemiBold",
+    fontFamily: "SemiBold",
     fontSize: 18,
   },
 
   containerButton: {
-    position: "absolute",
+    alignItems:'center',
+    marginBottom:10
+  },
+  buttons: {
+    // position: "absolute",
     bottom: 0,
     flexDirection: "row",
     backgroundColor: "#232627",

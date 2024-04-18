@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { SafeAreaView, StyleSheet, useColorScheme } from "react-native";
 import {
-  useFonts,
-  Poppins_300Light,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  Poppins_700Bold,
+  useFonts as useCustomFonts,
+  Poppins_300Light as Light,
+  Poppins_400Regular as Regular,
+  Poppins_500Medium as Medium,
+  Poppins_600SemiBold as SemiBold,
+  Poppins_700Bold as Bold,
 } from "@expo-google-fonts/poppins";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootNavigation } from "./src/navigation";
@@ -14,12 +14,12 @@ import { RootNavigation } from "./src/navigation";
 const Stack = createNativeStackNavigator();
 
 function App() {
-  let [fontsLoaded, fontError] = useFonts({
-    Poppins_300Light,
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold,
-    Poppins_700Bold,
+  let [fontsLoaded, fontError] = useCustomFonts({
+    Light,
+    Regular,
+    Medium,
+    SemiBold,
+    Bold,
   });
 
   if (!fontsLoaded && !fontError) {

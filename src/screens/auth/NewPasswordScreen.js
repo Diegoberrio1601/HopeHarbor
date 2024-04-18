@@ -9,24 +9,32 @@ import {
 } from "react-native";
 import { colorPalette } from "../../styles/colorPalette";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { SocialMediaButtons } from "../../components/socialMediaButtons";
 
-export const LoginScreen = ({ navigation }) => {
+export const NewPasswordScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <ScrollView bounces={false} style={styles.container}>
-      <Text style={styles.title}>Ingresa a tu cuenta</Text>
+      <Text style={styles.title}>Recuperar mi contraseña</Text>
       <View style={styles.inputs}>
         <View style={styles.containerInput}>
-          <Feather name="mail" size={24} color="#C2C3CB" />
+          <Ionicons name="lock-closed-outline" size={24} color="#C2C3CB" />
           <TextInput
-            placeholder="Correo electrónico"
+            placeholder="Contraseña"
             placeholderTextColor={"#C2C3CB"}
-            style={styles.input}
+            style={[styles.input, { width: "80%" }]}
+            secureTextEntry={showPassword ? true : false}
           />
+          <TouchableOpacity onPress={toggleShowPassword}>
+            {showPassword ? (
+              <Feather name="eye-off" size={24} color="#C2C3CB" />
+            ) : (
+              <Feather name="eye" size={24} color="#C2C3CB" />
+            )}
+          </TouchableOpacity>
         </View>
         <View style={styles.containerInput}>
           <Ionicons name="lock-closed-outline" size={24} color="#C2C3CB" />
@@ -46,27 +54,12 @@ export const LoginScreen = ({ navigation }) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.forgetPasswordBtn} onPress={() => navigation.navigate("ForgotPasswordScreen")}>
-        <Text style={styles.forgetPasswordText}>¿Olvidaste tu contraseña?</Text>
-      </TouchableOpacity>
-
       <TouchableOpacity
-        style={styles.loginBtn}
+        style={styles.registerBtn}
+        onPress={() => navigation.navigate("LoginScreen")}
       >
-        <Text style={styles.loginBtnText}>
-          Iniciar sesión
-        </Text>
+        <Text style={styles.registerBtnText}>Guardar</Text>
       </TouchableOpacity>
-
-      <View style={styles.containerRegister}>
-        <Text style={styles.labelRegister}>¿No tienes una cuenta? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("RegisterScreen")}>
-          <Text style={styles.registerBtn}>Regístrate</Text>
-        </TouchableOpacity>
-      </View>
-
-      <SocialMediaButtons/>
-      
     </ScrollView>
   );
 };
@@ -75,7 +68,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop:50,
+    paddingTop: 50,
+    // justifyContent: "center",
     backgroundColor: colorPalette.dark,
   },
   title: {
@@ -102,16 +96,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "90%",
   },
-  forgetPasswordBtn: {
-    flexDirection: "row-reverse",
-    marginBottom: 20,
-  },
-  forgetPasswordText: {
-    fontFamily: "Medium",
-    fontSize: 14,
-    color: "#fff",
-  },
-  loginBtn: {
+  registerBtn: {
     backgroundColor: "#1B1E20",
     padding: 10,
     height: 65,
@@ -120,24 +105,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 10,
   },
-  loginBtnText: { 
-    color: "#fff", 
-    fontFamily: "Medium", 
-    fontSize: 16 },
-  containerRegister: {
+  registerBtnText: {
+    color: "#fff",
+    fontFamily: "Medium",
+    fontSize: 16,
+  },
+  containerLogin: {
     flexDirection: "row",
     justifyContent: "center",
     marginVertical: 15,
   },
-  labelRegister: {
+  labelLogin: {
     color: "#ACADB9",
     fontFamily: "Medium",
     fontSize: 16,
   },
-  registerBtn: {
+  loginBtn: {
     color: "#fff",
     fontFamily: "SemiBold",
     fontSize: 16,
   },
-  
 });
