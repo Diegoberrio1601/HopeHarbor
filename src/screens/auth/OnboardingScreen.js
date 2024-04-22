@@ -6,21 +6,20 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { colorPalette } from "../../styles/colorPalette";
-
 
 export const OnboardingScreen = ({ navigation }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 3;
 
-  const handleNext = ( ) => {
+  const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     } else {
-      navigation.navigate('LoginScreen');
+      navigation.navigate("LoginScreen");
     }
   };
 
@@ -59,7 +58,7 @@ export const OnboardingScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView bounces={false} style={styles.content}>
+      <ScrollView bounces={false} contentContainerStyle={styles.content}>
         <TouchableOpacity onPress={handleSkip} style={styles.skipButton}>
           <Text style={styles.skipButtonText}>Saltar</Text>
         </TouchableOpacity>
@@ -82,21 +81,26 @@ export const OnboardingScreen = ({ navigation }) => {
         <Text style={styles.subtitle}>{pages[currentPage - 1].subtitle}</Text>
 
         <View style={styles.containerButton}>
-         <View style={styles.buttons}>
-         <TouchableOpacity onPress={handleBack} style={styles.containerArrow}>
-            <FontAwesome6
-              name="arrow-left-long"
-              size={16}
-              color={currentPage === 1 ? "#66676B" : "#fff"}
-            />
-          </TouchableOpacity>
-          <View style={styles.divider} />
-          <TouchableOpacity onPress={handleNext} style={styles.containerArrow} >
-            <FontAwesome6 name="arrow-right-long" size={16} color="#fff" />
-          </TouchableOpacity>
-         </View>
+          <View style={styles.buttons}>
+            <TouchableOpacity
+              onPress={handleBack}
+              style={styles.containerArrow}
+            >
+              <FontAwesome6
+                name="arrow-left-long"
+                size={16}
+                color={currentPage === 1 ? "#66676B" : "#fff"}
+              />
+            </TouchableOpacity>
+            <View style={styles.divider} />
+            <TouchableOpacity
+              onPress={handleNext}
+              style={styles.containerArrow}
+            >
+              <FontAwesome6 name="arrow-right-long" size={16} color="#fff" />
+            </TouchableOpacity>
+          </View>
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -105,16 +109,10 @@ export const OnboardingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // width: "100%",
-    // alignItems: "center",
-    // justifyContent: "center",
     backgroundColor: colorPalette.dark,
   },
   content: {
-    flex: 1,
-    // alignItems: "center",
-    paddingHorizontal: 20,
-    // justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: 362,
@@ -139,22 +137,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   skipButton: {
-    position: "absolute",
-    top: 0,
-    right: 20,
+    width: "100%",
+    alignItems: "flex-end",
+    marginBottom: 30,
   },
   skipButtonText: {
     color: "#D7D7D7",
     fontFamily: "SemiBold",
     fontSize: 18,
+    padding: 10,
   },
 
   containerButton: {
-    alignItems:'center',
-    marginBottom:10
+    alignItems: "center",
+    marginVertical: 10,
   },
   buttons: {
-    // position: "absolute",
     bottom: 0,
     flexDirection: "row",
     backgroundColor: "#232627",

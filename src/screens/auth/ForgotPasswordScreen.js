@@ -28,7 +28,7 @@ export const ForgotPasswordScreen = ({navigation}) => {
   
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView bounces={false} style={styles.container}>
       
       {isModalOpen && (
         <ValidateEmailAndPhone
