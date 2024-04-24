@@ -1,14 +1,20 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { colorPalette } from "../../../styles/colorPalette";
 
 export const HomeScreen = () => {
   return (
-    <View>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text>HomeScreen</Text>
-    </View>
+    </ScrollView>
   )
 }
 
 
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colorPalette.dark,
+      },
+})

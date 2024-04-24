@@ -7,8 +7,22 @@ const Stack = createNativeStackNavigator();
 
 export const HistoryStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
+    <Stack.Navigator
+      initialRouteName="HistoryScreen"
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: "#141718", // Cambiar el color de fondo del encabezado
+        },
+        headerTintColor: "#fff", // Cambiar el color del texto del encabezado
+      }}
+    >
+      <Stack.Screen name="HistoryScreen" component={HistoryScreen}  options={{
+          headerTitle: () => (
+            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mi historial</Text>
+          ),
+        }}/>
     </Stack.Navigator>
   );
 };

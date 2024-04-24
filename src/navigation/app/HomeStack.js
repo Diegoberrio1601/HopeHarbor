@@ -7,8 +7,27 @@ const Stack = createNativeStackNavigator();
 
 export const HomeStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+    <Stack.Navigator
+      initialRouteName="HomeScreen"
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: "#141718", // Cambiar el color de fondo del encabezado
+        },
+        headerTintColor: "#fff", // Cambiar el color del texto del encabezado
+       
+      }}
+    >
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerTitle: () => (
+            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mensaje del día</Text>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };
