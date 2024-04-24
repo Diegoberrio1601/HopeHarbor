@@ -2,6 +2,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { HistoryScreen } from "../../screens/app/History";
+import { DetailMessageScreen } from "../../screens/app/detailMessage/DetailMessage";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,15 @@ export const HistoryStack = () => {
             <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mi historial</Text>
           ),
         }}/>
+        <Stack.Screen
+        name="DetailMessageScreen"
+        component={DetailMessageScreen}
+        options={{
+          headerTitle: () => (
+            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mensaje de Diego</Text>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };

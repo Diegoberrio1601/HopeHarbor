@@ -2,6 +2,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { CommunityScreen } from "../../screens/app/Commnity";
+import { DetailMessageScreen } from "../../screens/app/detailMessage/DetailMessage";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,15 @@ export const CommunityStack = () => {
             <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
               Comunidad
             </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="DetailMessageScreen"
+        component={DetailMessageScreen}
+        options={{
+          headerTitle: () => (
+            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mensaje de Diego</Text>
           ),
         }}
       />

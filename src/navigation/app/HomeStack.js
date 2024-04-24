@@ -2,6 +2,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { HomeScreen } from "../../screens/app/Home";
+import { DetailMessageScreen } from "../../screens/app/detailMessage/DetailMessage";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,15 @@ export const HomeStack = () => {
         options={{
           headerTitle: () => (
             <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mensaje del día</Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="DetailMessageScreen"
+        component={DetailMessageScreen}
+        options={{
+          headerTitle: () => (
+            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize:22 }}>Mensaje de Diego</Text>
           ),
         }}
       />
