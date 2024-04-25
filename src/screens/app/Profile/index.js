@@ -11,9 +11,9 @@ import { colorPalette } from "../../../styles/colorPalette";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export const ProfileScreen = ({ navigation }) => {
-  // const DetailMessageScreen = () => {
-  //   navigation.navigate("DetailMessageScreen")
-  // }
+  const Navigate = (nameScreen) => {
+    navigation.navigate(nameScreen);
+  };
 
   return (
     <ScrollView bounces={false} contentContainerStyle={styles.container}>
@@ -30,7 +30,10 @@ export const ProfileScreen = ({ navigation }) => {
       <Text style={styles.email}>Diegoberrio1601@gmail.com</Text>
 
       <View style={styles.containerBtns}>
-        <TouchableOpacity style={styles.rowBtn}>
+        <TouchableOpacity
+          style={styles.rowBtn}
+          onPress={() => Navigate("PreferencesScreen")}
+        >
           <View style={styles.iconText}>
             <Image
               source={require("../../../../assets/icons/preferenceIcon.png")}
@@ -40,7 +43,7 @@ export const ProfileScreen = ({ navigation }) => {
           <MaterialIcons name="arrow-forward-ios" size={19} color="#A7A7AB" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.rowBtn}>
+        <TouchableOpacity style={styles.rowBtn} onPress={() => Navigate("AccountSecurityScreen")}>
           <View style={styles.iconText}>
             <Image
               source={require("../../../../assets/icons/securityIcon.png")}
@@ -49,15 +52,12 @@ export const ProfileScreen = ({ navigation }) => {
           </View>
           <MaterialIcons name="arrow-forward-ios" size={19} color="#A7A7AB" />
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.rowBtn}>
           <View style={styles.iconText}>
-            <Image
-              source={require("../../../../assets/icons/themeIcon.png")}
-            />
+            <Image source={require("../../../../assets/icons/themeIcon.png")} />
             <Text style={styles.btnText}>Modo claro</Text>
           </View>
-          <MaterialIcons name="arrow-forward-ios" size={19} color="#A7A7AB" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.rowBtn}>
@@ -67,7 +67,6 @@ export const ProfileScreen = ({ navigation }) => {
             />
             <Text style={styles.btnText}>Cerrar sesión</Text>
           </View>
-          <MaterialIcons name="arrow-forward-ios" size={19} color="#A7A7AB" />
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   containerBtns: {
-    marginTop:70,
+    marginTop: 70,
     // backgroundColor: "red",
     width: "100%",
   },
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom:35
+    marginBottom: 35,
   },
   iconText: {
     flexDirection: "row",
