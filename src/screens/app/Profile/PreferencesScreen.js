@@ -23,6 +23,7 @@ export const PreferencesScreen = ({ navigation }) => {
         >
           <View style={styles.iconText}>
             <Image
+              style={styles.logo}
               source={require("../../../../assets/icons/notificationIcon.png")}
             />
             <View style={styles.rowText}>
@@ -40,6 +41,7 @@ export const PreferencesScreen = ({ navigation }) => {
         >
           <View style={styles.iconText}>
             <Image
+              style={styles.logo}
               source={require("../../../../assets/icons/favoriteTopicIcon.png")}
             />
             <View style={styles.rowText}>
@@ -60,13 +62,16 @@ const styles = StyleSheet.create({
     flexGrow: 1, // Para ocupar todo el espacio vertical disponible
     backgroundColor: colorPalette.dark,
     paddingHorizontal: 20,
+    // marginHorizontal:20,
     paddingTop: 20,
     alignItems: "center",
   },
   containerBtns: {
     marginTop: 20,
+    width: "100%",
   },
   rowBtn: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -75,8 +80,14 @@ const styles = StyleSheet.create({
   iconText: {
     flexDirection: "row",
     alignItems: "center",
+    width: "100%",
   },
-  rowText: { marginLeft: 15 },
+  logo: {
+    marginRight: 15,
+  },
+  rowText: {
+    width: "100%"
+  },
   btnText: {
     fontFamily: "SemiBold",
     fontSize: 19,
@@ -86,5 +97,6 @@ const styles = StyleSheet.create({
     color: "#737373",
     fontFamily: "Regular",
     fontSize: 14,
+    width:253
   },
 });

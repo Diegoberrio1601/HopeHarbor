@@ -12,6 +12,40 @@ import { NewPasswordScreen } from "../../screens/auth/NewPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
+// Componente de encabezado personalizado
+const CustomHeader = ({ navigation }) => (
+  <View style={{ marginLeft: 0 }}>
+    <TouchableOpacity
+      onPress={() => navigation.goBack()}
+      style={{
+        width: 40,
+        height: 40,
+        borderRadius: 10,
+        backgroundColor: "#232627",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 20,
+      }}
+    >
+      <FontAwesome6 name="angle-left" size={20} color="#757474" />
+    </TouchableOpacity>
+  </View>
+);
+
+const headerOptions = {
+  headerTitle: "",
+  headerStyle: {
+    backgroundColor: "#141718",
+  },
+  headerBackTitleVisible: false,
+  headerShadowVisible: false,
+};
+const headerTitleStyle = {
+  fontFamily: "Medium",
+  color: "#fff",
+  fontSize: 22,
+};
+
 export const ProfileStack = () => {
   return (
     <Stack.Navigator
@@ -36,82 +70,92 @@ export const ProfileStack = () => {
           ),
         }}
       />
+
       <Stack.Screen
         name="PreferencesScreen"
         component={PreferencesScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-              Preferencias
-            </Text>
-          ),
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: "Preferencias", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
       />
+
       <Stack.Screen
         name="NotificationsScreen"
         component={NotificationsScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-              Notificaciones
-            </Text>
-          ),
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: "Notificaciones", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
+        
       />
       <Stack.Screen
         name="FavoriteTopicScreen"
         component={FavoriteTopicScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-              Tema preferido
-            </Text>
-          ),
-        }}
+
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: "Tema preferido", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
+
+        
       />
       <Stack.Screen
         name="AccountSecurityScreen"
         component={AccountSecurityScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-               Seguridad de la cuenta
-            </Text>
-          ),
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: "Seguridad de la cuenta", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
+        
       />
-       <Stack.Screen
+      <Stack.Screen
         name="EditInformationScreen"
         component={EditInformationScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-               Editar información
-            </Text>
-          ),
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: " Editar información", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
+       
       />
-       <Stack.Screen
+      <Stack.Screen
         name="NewPasswordScreen"
         component={NewPasswordScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-               Editar información
-            </Text>
-          ),
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: " Editar contraseña", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
+       
       />
       <Stack.Screen
         name="InviteAFriendScreen"
         component={InviteAFriendScreen}
-        options={{
-          headerTitle: () => (
-            <Text style={{ fontFamily: "Medium", color: "#fff", fontSize: 22 }}>
-              Invitar a un amigo 
-            </Text>
-          ),
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          ...headerOptions,
+          headerTitle: " Invitar a un amigo", // Agrega el título aquí
+          headerTitleStyle: headerTitleStyle,
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+        })}
+       
       />
     </Stack.Navigator>
   );
