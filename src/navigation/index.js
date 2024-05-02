@@ -1,15 +1,17 @@
-import React, {useState} from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthStack } from "./auth/AuthStack";
 import { BottomTab } from "./app/BottomTab";
 
+import { useSelector } from "react-redux";
 
 export const RootNavigation = () => {
-  const [isAuth, setIsAuth] = useState(true)
+  const isLogged = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <NavigationContainer>
-      {isAuth ? <BottomTab/> : <AuthStack/>}
+      {isLogged ? <BottomTab /> : <AuthStack />}
     </NavigationContainer>
   );
 };
