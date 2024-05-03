@@ -72,8 +72,17 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.userData = {}; // Borra los datos del usuario al cerrar sesión
     },
+
+    updateNotificationState: (state, action) => {
+      const { id, state: newState } = action.payload;
+      const notificationToUpdate = state.usePreferences.notifications.find(notification => notification.id === id);
+      if (notificationToUpdate) {
+        notificationToUpdate.state = newState;
+      }
+    },
+
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, updateNotificationState } = authSlice.actions;
 export default authSlice.reducer;

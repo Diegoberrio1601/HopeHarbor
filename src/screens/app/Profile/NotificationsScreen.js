@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import {
-  ScrollView,
   StyleSheet,
   Image,
   Text,
   View,
-  TouchableOpacity,
 } from "react-native";
 import { colorPalette } from "../../../styles/colorPalette";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Notification } from "../../../components/Notification";
+import { NotificationList } from "../../../components/Notification";
+
+import { useSelector } from "react-redux";
+
 
 export const NotificationsScreen = ({ navigation }) => {
   const Navigate = (nameScreen) => {
     navigation.navigate(nameScreen);
   };
+  const notifications = useSelector(state => state.auth.usePreferences.notifications);
+
+
   return (
-    <ScrollView bounces={false} contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>
         Aquí puedes seleccionar las notificaciones que prefieras.
       </Text>
       <View style={styles.continerCard}>
-        <Notification
-          iconName={"morning"}
-          title={"Al amanecer"}
-          subTitle={"Justo a las 6 am."}
-        />
+        <NotificationList notifications={notifications}/>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
