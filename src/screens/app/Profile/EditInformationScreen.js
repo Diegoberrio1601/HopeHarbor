@@ -6,44 +6,41 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput,
 } from "react-native";
 import { colorPalette } from "../../../styles/colorPalette";
 import { ModalEditInput } from "../../../components/ModalEditInput";
+import { useSelector } from "react-redux";
 
 export const EditInformationScreen = ({ navigation }) => {
+  const { name, birthday, phone, gender, email } = useSelector(
+    (state) => state.auth.userData
+  );
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalTitle, setModalTitle] = useState(""); 
-  const [modalValue, setModalValue] = useState(""); 
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalValue, setModalValue] = useState("");
 
   const handleInputChange = (text) => {
     setModalValue(text);
   };
 
   const toggleModal = (title, value) => {
-    setModalTitle(title); 
+    setModalTitle(title);
     setModalValue(value);
     setModalVisible(!modalVisible);
   };
 
   return (
     <ScrollView bounces={false} contentContainerStyle={styles.container}>
-      <ModalEditInput
-        visible={modalVisible}
-        onClose={toggleModal}
-        title={modalTitle} 
-        value={modalValue} 
-        onChangeText={handleInputChange} 
-      />
       <View style={styles.containerInputs}>
         <TouchableOpacity
           style={styles.rowIput}
-          onPress={() => toggleModal("Nombre", "Diego Berrio")}
+          onPress={() => toggleModal("Nombre", name)}
         >
           <Image
             source={require("../../../../assets/icons/editiUserIcon.png")}
           />
-          <Text style={styles.input}>Diego Berrio</Text>
+          <Text style={styles.input}>{name}</Text>
           <View>
             <Image source={require("../../../../assets/icons/EditIcon2.png")} />
           </View>
@@ -51,12 +48,12 @@ export const EditInformationScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.rowIput}
-          onPress={() => toggleModal("Cumpleaños", "01/02/1996")}
+          onPress={() => toggleModal("Cumpleaños", birthday)}
         >
           <Image
             source={require("../../../../assets/icons/editBirthdayIcon.png")}
           />
-          <Text style={styles.input}>01/02/1996</Text>
+          <Text style={styles.input}>{birthday}</Text>
           <View>
             <Image source={require("../../../../assets/icons/EditIcon2.png")} />
           </View>
@@ -64,12 +61,12 @@ export const EditInformationScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.rowIput}
-          onPress={() => toggleModal("Teléfono", "3003118411")}
+          onPress={() => toggleModal("Teléfono", phone)}
         >
           <Image
             source={require("../../../../assets/icons/editPhoneIcon.png")}
           />
-          <Text style={styles.input}>3003118411</Text>
+          <Text style={styles.input}>{phone}</Text>
           <View>
             <Image source={require("../../../../assets/icons/EditIcon2.png")} />
           </View>
@@ -77,10 +74,10 @@ export const EditInformationScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.rowIput}
-          onPress={() => toggleModal("Género", "Hombre")}
+          onPress={() => toggleModal("Género", gender)}
         >
           <Image source={require("../../../../assets/icons/editSexIcon.png")} />
-          <Text style={styles.input}>Hombre</Text>
+          <Text style={styles.input}>{gender}</Text>
           <View>
             <Image source={require("../../../../assets/icons/EditIcon2.png")} />
           </View>
@@ -88,17 +85,24 @@ export const EditInformationScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.rowIput}
-          onPress={() => toggleModal("Correo", "diegoberrio1601@gmail.com")}
+          onPress={() => toggleModal("Correo", email)}
         >
           <Image
             source={require("../../../../assets/icons/editEmailIcon.png")}
           />
-          <Text style={styles.input}>Diegoberrio1601@...</Text>
+          <Text numberOfLines={1} style={styles.input}>{email}</Text>
           <View>
             <Image source={require("../../../../assets/icons/EditIcon2.png")} />
           </View>
         </TouchableOpacity>
       </View>
+      <ModalEditInput
+        visible={modalVisible}
+        onClose={toggleModal}
+        title={modalTitle}
+        value={modalValue}
+        onChangeText={handleInputChange}
+      />
     </ScrollView>
   );
 };

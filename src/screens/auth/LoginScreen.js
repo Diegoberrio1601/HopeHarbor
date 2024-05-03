@@ -11,10 +11,23 @@ import { colorPalette } from "../../styles/colorPalette";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { SocialMediaButtons } from "../../components/socialMediaButtons";
 
+// redux
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/authSlice";
+
 export const LoginScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  // redux
+  const dispatch = useDispatch();
+  const handleLogin = () => {
+    console.log('entrando...')
+    dispatch(login({
+      isLoggedIn: true, 
+    }));
   };
   return (
     <ScrollView bounces={false} style={styles.container}>
@@ -52,6 +65,7 @@ export const LoginScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.loginBtn}
+        onPress={handleLogin}
       >
         <Text style={styles.loginBtnText}>
           Iniciar sesión

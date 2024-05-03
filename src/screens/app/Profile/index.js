@@ -10,10 +10,22 @@ import {
 import { colorPalette } from "../../../styles/colorPalette";
 import { MaterialIcons } from "@expo/vector-icons";
 
+// redux
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/authSlice";
+
 export const ProfileScreen = ({ navigation }) => {
   const Navigate = (nameScreen) => {
     navigation.navigate(nameScreen);
   };
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    console.log('cerrando...')
+    dispatch(logout());
+  };
+
 
   return (
     <ScrollView bounces={false} contentContainerStyle={styles.container}>
@@ -43,7 +55,10 @@ export const ProfileScreen = ({ navigation }) => {
           <MaterialIcons name="arrow-forward-ios" size={19} color="#A7A7AB" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.rowBtn} onPress={() => Navigate("AccountSecurityScreen")}>
+        <TouchableOpacity
+          style={styles.rowBtn}
+          onPress={() => Navigate("AccountSecurityScreen")}
+        >
           <View style={styles.iconText}>
             <Image
               source={require("../../../../assets/icons/securityIcon.png")}
@@ -60,7 +75,7 @@ export const ProfileScreen = ({ navigation }) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.rowBtn}>
+        <TouchableOpacity style={styles.rowBtn} onPress={handleLogout}>
           <View style={styles.iconText}>
             <Image
               source={require("../../../../assets/icons/logoutIcon.png")}
