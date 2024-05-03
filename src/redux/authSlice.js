@@ -70,7 +70,7 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       state.isLoggedIn = false;
-      state.userData = {}; // Borra los datos del usuario al cerrar sesión
+      state.userData = {}; 
     },
 
     updateNotificationState: (state, action) => {
@@ -80,9 +80,16 @@ export const authSlice = createSlice({
         notificationToUpdate.state = newState;
       }
     },
+    updateFavoriteTopicState: (state, action) => {
+      const { id, state: newState } = action.payload;
+      const favoriteTopicToUpdate = state.usePreferences.favoriteTopic.find(favoriteTopic => favoriteTopic.id === id);
+      if (favoriteTopicToUpdate) {
+        favoriteTopicToUpdate.state = newState;
+      }
+    },
 
   },
 });
 
-export const { login, logout, updateNotificationState } = authSlice.actions;
+export const { login, logout, updateNotificationState, updateFavoriteTopicState } = authSlice.actions;
 export default authSlice.reducer;

@@ -12,9 +12,6 @@ import { useSelector } from "react-redux";
 
 
 export const NotificationsScreen = ({ navigation }) => {
-  const Navigate = (nameScreen) => {
-    navigation.navigate(nameScreen);
-  };
   const notifications = useSelector(state => state.auth.usePreferences.notifications);
 
 

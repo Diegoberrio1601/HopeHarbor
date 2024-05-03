@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
-import { updateNotificationState } from "../../redux/authSlice"; // Importa la acción para actualizar el estado
+import { updateNotificationState } from "../../redux/authSlice";
 
 const Icons = {
   morning: require("../../../assets/icons/morningIcon.png"),
@@ -17,10 +17,9 @@ export const NotificationCard = ({ notification }) => {
 
   const toggleCheckbox = () => {
     setChecked(!checked);
-    dispatch(updateNotificationState({ id, state: !checked })); // Despacha una acción para actualizar el estado en Redux
+    dispatch(updateNotificationState({ id, state: !checked }));
   };
 
-  // Validar que el nombre del ícono sea válido
   const icon = Icons[iconName];
 
   return (
