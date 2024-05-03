@@ -1,21 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   Image,
   ScrollView,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
 } from "react-native";
 import { colorPalette } from "../../../styles/colorPalette";
 import { Message } from "../../../components/Message";
 
-export const HomeScreen = ({ navigation }) => {
-  const [validate, setValidate] = useState(false);
+import { useNavigation } from "@react-navigation/native";
 
-  const DetailMessageScreen = () => {
-    navigation.navigate("DetailMessageScreen")
-  }
+export const HomeScreen = () => {
+  const navigation = useNavigation();
+  const [validate, setValidate] = useState(false);
+  const notifications = useSelector(
+    (state) => state.auth.usePreferences.notifications
+  );
+  const favoriteTopics = useSelector(
+    (state) => state.auth.usePreferences.favoriteTopic
+  );
+
+  useEffect(() => {
+    // Verifica si al menos una notificación está activa
+    const isNotificationActive = notifications.some(
+      (notification) => notification.state
+    );
+
+    // Verifica si al menos un tema favorito está activo
+    const isFavoriteTopicActive = favoriteTopics.some((topic) => topic.state);
+
+    // Actualiza el estado de validación
+    setValidate(isNotificationActive && isFavoriteTopicActive);
+  }, [notifications, favoriteTopics]);
+
+  const NavigateTo = (nameScreen) => {
+    navigation.navigate(nameScreen);
+  };
 
   return (
     <ScrollView
@@ -28,11 +50,15 @@ export const HomeScreen = ({ navigation }) => {
       {validate ? (
         <>
           <Text style={styles.date}>sábado 20 de abril</Text>
-          <Text style={styles.notificationTime}>Mensaje motivacional de la mañana</Text>
-          <Message/>
+          <Text style={styles.notificationTime}>
+            Mensaje motivacional de la mañana
+          </Text>
+          <Message />
           <TouchableOpacity
             style={styles.btnCreateNote}
-            onPress={DetailMessageScreen}
+            onPress={() => {
+              NavigateTo("DetailMessageScreen");
+            }}
           >
             <Text style={styles.btnCreateNoteText}>Agregar una nota +</Text>
           </TouchableOpacity>
@@ -50,7 +76,9 @@ export const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={styles.btnGoToProfile}
-            onPress={() => setValidate(true)}
+            onPress={() => {
+              NavigateTo("PreferencesScreen");
+            }}
           >
             <Text style={styles.btnGoToProfileText}>Comencemos</Text>
           </TouchableOpacity>
@@ -116,12 +144,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   notificationTime: {
-    color:'#737373',
-    fontFamily:'Regular',
-    fontSize:14,
-    marginTop:20
+    color: "#737373",
+    fontFamily: "Regular",
+    fontSize: 14,
+    marginTop: 20,
   },
-  btnCreateNote: { 
+  btnCreateNote: {
     backgroundColor: "#1B1E20",
     width: "100%",
     padding: 10,
@@ -129,7 +157,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom:20
+    marginBottom: 20,
   },
   btnCreateNoteText: {
     color: "#fff",

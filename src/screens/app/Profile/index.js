@@ -22,10 +22,9 @@ export const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    console.log('cerrando...')
+    console.log("cerrando...");
     dispatch(logout());
   };
-
 
   return (
     <ScrollView bounces={false} contentContainerStyle={styles.container}>
