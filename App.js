@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { SafeAreaView, StyleSheet, useColorScheme } from "react-native";
 import {
   useFonts as useCustomFonts,
   Poppins_300Light as Light,
@@ -8,12 +6,12 @@ import {
   Poppins_600SemiBold as SemiBold,
   Poppins_700Bold as Bold,
 } from "@expo-google-fonts/poppins";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootNavigation } from "./src/navigation";
 import { Provider } from 'react-redux'
 import { store } from './src/redux/store'
 
-const Stack = createNativeStackNavigator();
+
+
 
 function App() {
   let [fontsLoaded, fontError] = useCustomFonts({
