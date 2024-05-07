@@ -39,6 +39,9 @@ export const HomeScreen = () => {
     navigation.navigate(nameScreen);
   };
 
+  
+  
+
   return (
     <ScrollView
       bounces={false}
@@ -73,11 +76,16 @@ export const HomeScreen = () => {
           <Text style={styles.nameApp}>Hope Harbor</Text>
           <Text style={styles.subtitle}>
             Hagamos unos pequeños ajustes y todo{"\n"}estará listo para ti.
+            
+          </Text>
+          <Text style={[styles.subtitle, {marginBottom:40}]}>
+          Agrega tus prefrencias sobre Notificaciones y Tema preferido.
+            
           </Text>
           <TouchableOpacity
             style={styles.btnGoToProfile}
             onPress={() => {
-              NavigateTo("PreferencesScreen");
+              NavigateTo('ProfileStack');
             }}
           >
             <Text style={styles.btnGoToProfileText}>Comencemos</Text>
@@ -93,7 +101,7 @@ const styles = StyleSheet.create({
     flexGrow: 1, // Para ocupar todo el espacio vertical disponible
     backgroundColor: colorPalette.dark,
     paddingHorizontal: 20,
-    paddingTop: 20,
+    
   },
   containerWelcome: {
     justifyContent: "center",

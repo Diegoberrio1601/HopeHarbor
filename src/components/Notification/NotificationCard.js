@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
-import { updateNotificationState } from "../../redux/authSlice";
+import { updatePreferenceState } from "../../redux/authSlice";
 
 const Icons = {
   morning: require("../../../assets/icons/morningIcon.png"),
@@ -11,13 +11,15 @@ const Icons = {
 };
 
 export const NotificationCard = ({ notification }) => {
-  const { id, title, subTitle, iconName, state } = notification;
+  const { id, title, subTitle, iconName, state, type } = notification;
   const [checked, setChecked] = useState(state);
+
   const dispatch = useDispatch();
 
   const toggleCheckbox = () => {
     setChecked(!checked);
-    dispatch(updateNotificationState({ id, state: !checked }));
+    // dispatch(updateNotificationState({ id, state: !checked }));
+    dispatch(updatePreferenceState({ type:type, id, state: !checked }));
   };
 
   const icon = Icons[iconName];

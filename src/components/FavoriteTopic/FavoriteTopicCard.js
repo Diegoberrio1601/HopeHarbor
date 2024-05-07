@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from "react-redux";
-import { updateFavoriteTopicState } from "../../redux/authSlice";
+import { updatePreferenceState } from "../../redux/authSlice";
 
 export const FavoriteTopicCard = ({favoriteTopic}) => {
-  const { id, title, subTitle, state } = favoriteTopic;
+  const { id, title, subTitle, iconName, state, type } = favoriteTopic;
   const [checked, setChecked] = useState(state);
   const dispatch = useDispatch();
 
   const toggleCheckbox = () => {
     setChecked(!checked);
-    dispatch(updateFavoriteTopicState({ id, state: !checked })); 
+    // dispatch(updateFavoriteTopicState({ id, state: !checked })); 
+    dispatch(updatePreferenceState({ type: type, id, state: !checked }));
   };
 
 
